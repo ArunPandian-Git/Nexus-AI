@@ -1,21 +1,23 @@
-%%writefile /content/backend/config.py
-
 from pathlib import Path
 from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
+
 class Settings(BaseSettings):
 
     app_name: str = "NEXUS AI"
     app_version: str = "1.0.0"
+
     environment: str = "development"
     debug: bool = True
+
     api_prefix: str = "/api/v1"
 
     openai_api_key: SecretStr | None = None
     openai_model: str = "gpt-4.1-mini"
+    embedding_model: str = "text-embedding-3-small"
 
     database_url: str = "sqlite:///./nexus.db"
 
@@ -23,6 +25,7 @@ class Settings(BaseSettings):
     qdrant_api_key: SecretStr | None = None
 
     secret_key: SecretStr
+
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
 
@@ -32,5 +35,6 @@ class Settings(BaseSettings):
         case_sensitive=False,
         extra="ignore"
     )
+
 
 settings = Settings()
