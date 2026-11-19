@@ -1,8 +1,10 @@
+%%writefile /content/backend/config.py
+
 from pathlib import Path
 from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path("/content")
 
 
 class Settings(BaseSettings):
